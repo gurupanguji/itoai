@@ -1,0 +1,2 @@
+# tbd
+AI learning course
