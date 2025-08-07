@@ -1,2 +1,3 @@
-# tbd
-AI learning course
+# ItoAI
+Landing page for the online cohort course of ItoAI. 
+
