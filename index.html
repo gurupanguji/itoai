@@ -9,18 +9,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Cardo:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
-
-        @theme {
-        --color-slate-50: oklch(0.9531 0.0173 99.6);
-        }
-
-
         body {
             font-family: 'Bricolage Grotesque', sans-serif;
         }
         /* Custom gradient text */
         .gradient-text {
-            transition: all 0.1s;
             background: linear-gradient(90deg, #4f46e5, #ec4899);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -29,69 +22,72 @@
             font-family: 'EB Garamond', serif;
             font-weight: 400;
             font-style: italic;
-            //text-shadow: 0 0 5px #ff005e, 0 0 10px #ff005e, 0 0 20px #ff005e, 0 0 40px #ff005e, 0 0 80px #ff005e;
-            //animation: glow 0.5ss infinite alternate;
         }
         .dark .dark\:gradient-text {
-            transition: all 0.1s;
             background: linear-gradient(90deg, #818cf8, #f9a8d4);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-fill-color: transparent;
-            font-family: 'EB Garamond', serif;
-            font-weight: 400;
-            font-style: italic;
-            //text-shadow: 0 0 5px #ff005e, 0 0 10px #ff005e, 0 0 20px #ff005e, 0 0 40px #ff005e, 0 0 80px #ff005e;
-            //animation: glow 0.5s infinite alternate;
         }
         
-        /* Venetian Blinds effect */
-        .venetian-blind {
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-            overflow: hidden;
+        /* Responsive Outcomes Section (Accordion on Mobile, Venetian on Desktop) */
+        .outcome-item {
+            cursor: pointer;
         }
-        .venetian-blind .content {
+
+        /* Mobile First: Accordion behavior */
+        .outcome-item .outcome-content {
             max-height: 0;
             opacity: 0;
-            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1), opacity 0.3s ease-in-out;
-            transform: translateY(-10px);
+            overflow: hidden;
+            transition: all 0.5s ease-in-out;
         }
-        .venetian-blind.active {
-            flex-grow: 10;
-        }
-        .venetian-blind.active .content {
-            max-height: 500px; /* Adjust as needed */
+        .outcome-item.active .outcome-content {
+            max-height: 200px; /* Adjust as needed for content */
             opacity: 1;
-            transform: translateY(0);
-            transition: max-height 0.7s ease-in-out, opacity 0.5s ease-in-out 0.2s;
         }
-        .venetian-blind .title {
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-            white-space: nowrap;
-        }
-        .venetian-blind.active .title {
-            display: none;
-        }
-        .venetian-blind:not(.active) .content-wrapper {
-            display: none;
-        }
-        .venetian-blind.active .content-wrapper {
-            display: block;
+        .outcome-item .outcome-title-desktop {
+            display: none; /* Hide vertical title on mobile */
         }
 
-        .bolden {
-            font-weight: bold;
+        /* Desktop (md and up): Venetian Blind behavior */
+        @media (min-width: 768px) {
+            .outcome-item {
+                flex-grow: 1;
+                transition: flex-grow 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            }
+            .outcome-item.active {
+                flex-grow: 10;
+            }
+            .outcome-item .outcome-title-mobile {
+                display: none; /* Hide mobile title */
+            }
+            .outcome-item .outcome-title-desktop {
+                display: block; /* Show vertical title */
+                writing-mode: vertical-rl;
+                transform: rotate(180deg);
+                transition: opacity 0.3s ease-in-out;
+            }
+            .outcome-item .outcome-content {
+                /* Reset mobile styles and center content */
+                max-height: none;
+                opacity: 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                text-align: center;
+                transition: opacity 0.5s ease-in-out 0.2s;
+            }
+            .outcome-item.active .outcome-title-desktop {
+                opacity: 0;
+            }
+            .outcome-item.active .outcome-content {
+                opacity: 1;
+            }
         }
-
-        .my-svg-icon {
-            transition: fill 0.3s ease; /* Smooth transition for fill property */
-        }
-        .my-svg-icon:hover path {
-            stroke: black;
-        }
-
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
@@ -106,7 +102,7 @@
         <!-- Header Section -->
         <header class="text-center py-20 sm:py-32">
             <div class="bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 text-lg font-medium px-4 py-1.5 rounded-full inline-block mb-4">
-                A 4-Week Online Course for <span class="bolden"> Parents & Kids </span>
+                A 4-Week Online Course for <span class="font-bold"> Parents & Kids </span>
             </div>
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white">
                 Go From <span class="gradient-text dark:dark:gradient-text text-7xl">Consumer to Creator</span> with AI ✨
@@ -122,43 +118,43 @@
 
         <!-- AI Tools Logos -->
         <section class="py-12">
-            <h3 class="text-center font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-3xl">
-                ✨ Tools you'll use
+            <h3 class="text-center font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-sm sm:text-base">
+                ✨ TOOLS YOU'LL USE
             </h3>
             <div class="mt-6 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-8 items-center text-slate-500 dark:text-slate-400">
                 <!-- Lovable -->
                 <div class="flex flex-col items-center justify-center gap-2">
-                    <svg class="h-10 w-10 my-svg-icon dark:dark:my-svg-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M15.77 8.23A4.5 4.5 0 0120.25 6h7.5a4.5 4.5 0 014.48 2.23l10.5 18.38a4.5 4.5 0 01-3.88 6.77H8.65a4.5 4.5 0 01-3.88-6.77l10.5-18.38z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 33v9" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg class="h-10 w-10" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M15.77 8.23A4.5 4.5 0 0120.25 6h7.5a4.5 4.5 0 014.48 2.23l10.5 18.38a4.5 4.5 0 01-3.88 6.77H8.65a4.5 4.5 0 01-3.88-6.77l10.5-18.38z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 33v9" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <span class="text-xs font-medium">Lovable</span>
                 </div>
                  <!-- Bolt -->
                 <div class="flex flex-col items-center justify-center gap-2">
-                    <svg class="h-10 w-10 my-svg-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5.2a1 1 0 01-1.6.8L6 4.532V12.5a1 1 0 001.6.8l5.4-3.468V18a1 1 0 01-2 0v-1.468l-4.2-2.692A1 1 0 014 13V3a1 1 0 011.3-.954l6-3.00z" clip-rule="evenodd"></path></svg>
+                    <svg class="h-10 w-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5.2a1 1 0 01-1.6.8L6 4.532V12.5a1 1 0 001.6.8l5.4-3.468V18a1 1 0 01-2 0v-1.468l-4.2-2.692A1 1 0 014 13V3a1 1 0 011.3-.954l6-3.00z" clip-rule="evenodd"></path></svg>
                     <span class="text-xs font-medium">Bolt</span>
                 </div>
                 <!-- NotebookLM -->
                 <div class="flex flex-col items-center justify-center gap-2">
-                    <svg class="h-10 w-10 my-svg-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                    <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
                     <span class="text-xs font-medium">NotebookLM</span>
                 </div>
                 <!-- Gemini -->
                 <div class="flex flex-col items-center justify-center gap-2">
-                    <svg class="h-10 w-10 my-svg-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.25a.75.75 0 0 1 .75.75v3.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75zM17.25 4.5a.75.75 0 0 1 .53 1.28l-2.25 2.25a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 .53-.22zm-10.5 0a.75.75 0 0 1 .53.22l2.25 2.25a.75.75 0 0 1-1.06 1.06L6.22 5.78a.75.75 0 0 1 .53-1.28zM12 10.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM19.5 11.25a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 .75-.75zM4.5 11.25a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 .75-.75zM17.25 16.5a.75.75 0 0 1 .53.22l2.25 2.25a.75.75 0 1 1-1.06 1.06l-2.25-2.25a.75.75 0 0 1 .53-1.28zM6.75 16.5a.75.75 0 0 1 .53 1.28l-2.25 2.25a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 .53-.22zM12 17.25a.75.75 0 0 1 .75.75v3.25a.75.75 0 0 1-1.5 0V18a.75.75 0 0 1 .75-.75z"/></svg>
+                    <svg class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.25a.75.75 0 0 1 .75.75v3.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75zM17.25 4.5a.75.75 0 0 1 .53 1.28l-2.25 2.25a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 .53-.22zm-10.5 0a.75.75 0 0 1 .53.22l2.25 2.25a.75.75 0 0 1-1.06 1.06L6.22 5.78a.75.75 0 0 1 .53-1.28zM12 10.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM19.5 11.25a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 .75-.75zM4.5 11.25a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 .75-.75zM17.25 16.5a.75.75 0 0 1 .53.22l2.25 2.25a.75.75 0 1 1-1.06 1.06l-2.25-2.25a.75.75 0 0 1 .53-1.28zM6.75 16.5a.75.75 0 0 1 .53 1.28l-2.25 2.25a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 .53-.22zM12 17.25a.75.75 0 0 1 .75.75v3.25a.75.75 0 0 1-1.5 0V18a.75.75 0 0 1 .75-.75z"/></svg>
                      <span class="text-xs font-medium">Gemini ✨</span>
                 </div>
                 <!-- GitHub -->
                 <div class="flex flex-col items-center justify-center gap-2">
-                    <svg class="h-10 w-10 my-svg-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"></path></svg>
+                    <svg class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"></path></svg>
                     <span class="text-xs font-medium">GitHub</span>
                 </div>
                 <!-- ChatGPT -->
                 <div class="flex flex-col items-center justify-center gap-2">
-                    <svg class="h-10 w-10 my-svg-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.125 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" /></svg>
+                    <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.125 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" /></svg>
                     <span class="text-xs font-medium">ChatGPT ✨</span>
                 </div>
                 <!-- Cursor -->
                 <div class="flex flex-col items-center justify-center gap-2">
-                    <svg class="h-10 w-10 my-svg-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zm-7.518-.267A8.25 8.25 0 1120.25 10.5M8.288 14.212A5.25 5.25 0 1117.25 10.5" /></svg>
+                    <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zm-7.518-.267A8.25 8.25 0 1120.25 10.5M8.288 14.212A5.25 5.25 0 1117.25 10.5" /></svg>
                     <span class="text-xs font-medium">Cursor</span>
                 </div>
             </div>
@@ -267,44 +263,44 @@
                 </div>
             </section>
 
-            <!-- Program Outcomes (Venetian Blinds) -->
+            <!-- Program Outcomes Section -->
             <section id="outcomes">
                 <div class="text-center">
                     <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">Powerful Program Outcomes for both <span class="gradient-text dark:dark:gradient-text text-5xl">Parents and Kids</span></h2>
                     <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">Click on any benefit to expand and learn more.</p>
                 </div>
-                <div id="venetian-blinds-container" class="mt-12 flex h-[500px] w-full cursor-pointer gap-2">
-                    <div class="venetian-blind active relative flex-1 bg-indigo-600 text-white rounded-2xl p-6">
-                        <h3 class="title font-bold text-lg text-indigo-100">Build Real Things</h3>
-                        <div class="content-wrapper text-center">
-                            <h3 class="text-2xl font-bold">Learn to Build with AI</h3>
+                <div id="outcomes-container" class="mt-12 flex flex-col md:flex-row md:h-[500px] w-full gap-2">
+                    <!-- Item 1 -->
+                    <div class="outcome-item relative rounded-2xl p-6 overflow-hidden bg-indigo-600 text-white">
+                        <h3 class="outcome-title-mobile text-xl font-bold md:hidden">Learn to Build with AI</h3>
+                        <h3 class="outcome-title-desktop absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-bold text-indigo-100">Build Real Things</h3>
+                        <div class="outcome-content">
                             <p class="mt-4 text-indigo-200">Go beyond theory. You'll learn to use AI for building applications, games, conducting user/competitor research, vibe coding, and much more. Walk away with tangible projects and skills.</p>
                         </div>
-                        <div class="content"></div>
                     </div>
-                    <div class="venetian-blind relative flex-1 bg-pink-500 text-white rounded-2xl p-6">
-                        <h3 class="title font-bold text-lg text-pink-100">Shift Your Mindset</h3>
-                        <div class="content-wrapper text-center">
-                            <h3 class="text-2xl font-bold">From Consumer to Creator</h3>
+                    <!-- Item 2 -->
+                    <div class="outcome-item relative rounded-2xl p-6 overflow-hidden bg-pink-500 text-white">
+                        <h3 class="outcome-title-mobile text-xl font-bold md:hidden">From Consumer to Creator</h3>
+                        <h3 class="outcome-title-desktop absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-bold text-pink-100">Shift Your Mindset</h3>
+                        <div class="outcome-content">
                             <p class="mt-4 text-pink-200">This course is designed to fundamentally change your mindset. Become inspired by entrepreneurs and learn the Stanford Design Thinking approach to see problems as opportunities.</p>
                         </div>
-                        <div class="content"></div>
                     </div>
-                    <div class="venetian-blind relative flex-1 bg-amber-500 text-white rounded-2xl p-6">
-                        <h3 class="title font-bold text-lg text-amber-100">Develop Critical Skills</h3>
-                        <div class="content-wrapper text-center">
-                            <h3 class="text-2xl font-bold">Future-Proof Your Abilities</h3>
-                            <p class="mt-4 text-amber-200">Develop critical problem-solving capabilities and first-principles thinking. For parents, it's about equipping your children with a competitive advantage. For kids, it's about being cool and having fun!</p>
+                    <!-- Item 3 -->
+                    <div class="outcome-item relative rounded-2xl p-6 overflow-hidden bg-amber-500 text-white">
+                        <h3 class="outcome-title-mobile text-xl font-bold md:hidden">Future-Proof Your Abilities</h3>
+                        <h3 class="outcome-title-desktop absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-bold text-amber-100">Develop Critical Skills</h3>
+                        <div class="outcome-content">
+                             <p class="mt-4 text-amber-200">Develop critical problem-solving capabilities and first-principles thinking. For parents, it's about equipping your children with a competitive advantage. For kids, it's about being cool and having fun!</p>
                         </div>
-                         <div class="content"></div>
                     </div>
-                    <div class="venetian-blind relative flex-1 bg-teal-500 text-white rounded-2xl p-6">
-                        <h3 class="title font-bold text-lg text-teal-100">Connect as a Family</h3>
-                        <div class="content-wrapper text-center">
-                            <h3 class="text-2xl font-bold">Quality Time, Reimagined</h3>
+                    <!-- Item 4 -->
+                    <div class="outcome-item relative rounded-2xl p-6 overflow-hidden bg-teal-500 text-white">
+                        <h3 class="outcome-title-mobile text-xl font-bold md:hidden">Quality Time, Reimagined</h3>
+                        <h3 class="outcome-title-desktop absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-bold text-teal-100">Connect as a Family</h3>
+                        <div class="outcome-content">
                             <p class="mt-4 text-teal-200">Spend quality time together as a family, learning and creating. This is a one-of-a-kind program designed specifically for parents and children to collaborate and grow together.</p>
                         </div>
-                         <div class="content"></div>
                     </div>
                 </div>
             </section>
@@ -336,15 +332,14 @@
         <footer class="text-center py-12 border-t border-slate-200 dark:border-slate-800 mt-20">
             <p class="text-slate-600 dark:text-slate-400">Ready to build the future together?</p>
             <a href="#pricing" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">Register Your Family</a>
-            <p class="mt-8 text-sm text-slate-500">&copy; 2025 I2AI. All rights reserved.</p>
+            <p class="mt-8 text-sm text-slate-500">&copy; 2025 ItoAI. All rights reserved.</p>
         </footer>
 
     </div>
 
     <script>
-        // Wait for the DOM to be fully loaded before running scripts
         document.addEventListener('DOMContentLoaded', () => {
-            // Theme Toggling
+            // --- Theme Toggling ---
             const themeToggleBtn = document.getElementById('theme-toggle');
             const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
             const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
@@ -360,105 +355,102 @@
             themeToggleBtn.addEventListener('click', function() {
                 themeToggleDarkIcon.classList.toggle('hidden');
                 themeToggleLightIcon.classList.toggle('hidden');
-                if (localStorage.getItem('color-theme')) {
-                    if (localStorage.getItem('color-theme') === 'light') {
-                        document.documentElement.classList.add('dark');
-                        localStorage.setItem('color-theme', 'dark');
-                    } else {
-                        document.documentElement.classList.remove('dark');
-                        localStorage.setItem('color-theme', 'light');
-                    }
+                document.documentElement.classList.toggle('dark');
+                if (document.documentElement.classList.contains('dark')) {
+                    localStorage.setItem('color-theme', 'dark');
                 } else {
-                    if (document.documentElement.classList.contains('dark')) {
-                        document.documentElement.classList.remove('dark');
-                        localStorage.setItem('color-theme', 'light');
-                    } else {
-                        document.documentElement.classList.add('dark');
-                        localStorage.setItem('color-theme', 'dark');
-                    }
+                    localStorage.setItem('color-theme', 'light');
                 }
             });
 
-            // Venetian Blinds Logic
-            const blindsContainer = document.getElementById('venetian-blinds-container');
-            const blinds = blindsContainer.querySelectorAll('.venetian-blind');
-
-            blinds.forEach(blind => {
-                blind.addEventListener('click', () => {
-                    blinds.forEach(b => b.classList.remove('active'));
-                    blind.classList.add('active');
-                });
-            });
-
-            // Early Bird Banner Logic
+            // --- Early Bird Banner Logic ---
             const earlyBirdBanner = document.getElementById('early-bird-banner');
             const earlyBirdDeadline = new Date('2025-09-01T00:00:00');
-            const now = new Date();
-
-            if (now < earlyBirdDeadline) {
+            if (new Date() < earlyBirdDeadline) {
                 earlyBirdBanner.classList.remove('hidden');
             }
 
-            // Time Zone Conversion Logic
+            // --- Time Zone Conversion Logic ---
             const timeDisplay = document.getElementById('course-time-display');
             const timeZoneSelect = document.getElementById('time-zone-select');
-
-            // The course time is Sep 20, 2025, at 10:00 AM Pacific Daylight Time (PDT), which is UTC-7
             const courseDate = new Date('2025-09-20T17:00:00Z');
-
-            const timeZones = [
-                'America/Los_Angeles',
-                'America/Denver',
-                'America/Chicago',
-                'America/New_York',
-                'Europe/London',
-                'Europe/Paris',
-                'Asia/Kolkata',
-                'Asia/Shanghai',
-                'Asia/Tokyo',
-                'Australia/Sydney'
-            ];
+            const timeZones = ['America/Los_Angeles', 'America/Denver', 'America/Chicago', 'America/New_York', 'Europe/London', 'Europe/Paris', 'Asia/Kolkata', 'Asia/Shanghai', 'Asia/Tokyo', 'Australia/Sydney'];
             
-            // Function to update the displayed time based on selected time zone
             function updateDisplayedTime(timeZone) {
-                const options = {
-                    hour: 'numeric',
-                    minute: '2-digit',
-                    timeZoneName: 'short',
-                    timeZone: timeZone
-                };
+                const options = { hour: 'numeric', minute: '2-digit', timeZoneName: 'short', timeZone: timeZone };
                 try {
-                    const formattedTime = new Intl.DateTimeFormat('en-US', options).format(courseDate);
-                    timeDisplay.textContent = formattedTime;
+                    timeDisplay.textContent = new Intl.DateTimeFormat('en-US', options).format(courseDate);
                 } catch (error) {
                     console.error("Could not format date for time zone:", timeZone);
                     timeDisplay.textContent = "Invalid Time Zone";
                 }
             }
 
-            // Populate the dropdown
             const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
             if (!timeZones.includes(userTimeZone)) {
-                 timeZones.unshift(userTimeZone); // Add user's local time zone to the top if not present
+                 timeZones.unshift(userTimeZone);
             }
             
             timeZones.forEach(tz => {
                 const option = document.createElement('option');
                 option.value = tz;
-                option.textContent = tz.replace(/_/g, ' '); // Make it more readable
-                if (tz === userTimeZone) {
-                    option.selected = true;
-                }
+                option.textContent = tz.replace(/_/g, ' ');
+                if (tz === userTimeZone) option.selected = true;
                 timeZoneSelect.appendChild(option);
             });
 
-            // Set initial time display
             updateDisplayedTime(userTimeZone);
+            timeZoneSelect.addEventListener('change', (e) => updateDisplayedTime(e.target.value));
 
-            // Add event listener for changes
-            timeZoneSelect.addEventListener('change', (e) => {
-                updateDisplayedTime(e.target.value);
+            // --- Responsive Outcomes Section Logic ---
+            const outcomesContainer = document.getElementById('outcomes-container');
+            const outcomeItems = Array.from(outcomesContainer.querySelectorAll('.outcome-item'));
+            let resizeTimer;
+
+            function handleOutcomeClick(clickedItem) {
+                const isActive = clickedItem.classList.contains('active');
+                
+                // On mobile, clicking an active item closes it.
+                if (window.innerWidth < 768 && isActive) {
+                    clickedItem.classList.remove('active');
+                    return;
+                }
+                
+                // Deactivate all others
+                outcomeItems.forEach(item => item.classList.remove('active'));
+                
+                // Activate the clicked one (or toggle if it was already active on desktop)
+                if (!isActive) {
+                    clickedItem.classList.add('active');
+                } else if (window.innerWidth >= 768) {
+                    // On desktop, if you click the active one, it stays active
+                     clickedItem.classList.add('active');
+                }
+            }
+
+            function setDefaultActiveState() {
+                if (window.innerWidth >= 768) {
+                    // On desktop, if no item is active, make the first one active.
+                    if (!outcomeItems.some(item => item.classList.contains('active'))) {
+                        outcomeItems[0].classList.add('active');
+                    }
+                } else {
+                    // On mobile, ensure no items are active by default.
+                    outcomeItems.forEach(item => item.classList.remove('active'));
+                }
+            }
+
+            outcomeItems.forEach(item => {
+                item.addEventListener('click', () => handleOutcomeClick(item));
             });
+            
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(setDefaultActiveState, 100);
+            });
+
+            // Initial setup
+            setDefaultActiveState();
         });
     </script>
 </body>
