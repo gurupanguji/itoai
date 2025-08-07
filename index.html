@@ -9,6 +9,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Cardo:ital,wght@0,400;0,700;1,400&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
+
+        @theme {
+        --color-slate-50: oklch(0.9531 0.0173 99.6);
+        }
+
+
         body {
             font-family: 'Bricolage Grotesque', sans-serif;
         }
@@ -85,6 +91,7 @@
         .my-svg-icon:hover path {
             stroke: black;
         }
+
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-300">
@@ -102,7 +109,7 @@
                 A 4-Week Online Course for <span class="bolden"> Parents & Kids </span>
             </div>
             <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                Go From <span class="gradient-text dark:dark:gradient-text text-7xl">Consumer to Creator</span> with AI
+                Go From <span class="gradient-text dark:dark:gradient-text text-7xl">Consumer to Creator</span> with AI ✨
             </h1>
             <p class="mt-6 max-w-3xl mx-auto text-lg text-slate-600 dark:text-slate-300">
                 Join our hands-on course to learn critical AI tools, build real applications, and develop an entrepreneurial mindset <span class="gradient-text dark:dark:gradient-text text-3xl">together as a family</span>.
@@ -115,43 +122,43 @@
 
         <!-- AI Tools Logos -->
         <section class="py-12">
-            <h3 class="text-center text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">
-                Tools you'll use
+            <h3 class="text-center font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-3xl">
+                ✨ Tools you'll use
             </h3>
             <div class="mt-6 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-7 gap-8 items-center text-slate-500 dark:text-slate-400">
                 <!-- Lovable -->
                 <div class="flex flex-col items-center justify-center gap-2">
-                    <svg class="h-10 w-10 my-svg-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M15.77 8.23A4.5 4.5 0 0120.25 6h7.5a4.5 4.5 0 014.48 2.23l10.5 18.38a4.5 4.5 0 01-3.88 6.77H8.65a4.5 4.5 0 01-3.88-6.77l10.5-18.38z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 33v9" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    <svg class="h-10 w-10 my-svg-icon dark:dark:my-svg-icon" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M15.77 8.23A4.5 4.5 0 0120.25 6h7.5a4.5 4.5 0 014.48 2.23l10.5 18.38a4.5 4.5 0 01-3.88 6.77H8.65a4.5 4.5 0 01-3.88-6.77l10.5-18.38z" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 33v9" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     <span class="text-xs font-medium">Lovable</span>
                 </div>
                  <!-- Bolt -->
                 <div class="flex flex-col items-center justify-center gap-2">
-                    <svg class="h-10 w-10" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5.2a1 1 0 01-1.6.8L6 4.532V12.5a1 1 0 001.6.8l5.4-3.468V18a1 1 0 01-2 0v-1.468l-4.2-2.692A1 1 0 014 13V3a1 1 0 011.3-.954l6-3.00z" clip-rule="evenodd"></path></svg>
+                    <svg class="h-10 w-10 my-svg-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5.2a1 1 0 01-1.6.8L6 4.532V12.5a1 1 0 001.6.8l5.4-3.468V18a1 1 0 01-2 0v-1.468l-4.2-2.692A1 1 0 014 13V3a1 1 0 011.3-.954l6-3.00z" clip-rule="evenodd"></path></svg>
                     <span class="text-xs font-medium">Bolt</span>
                 </div>
                 <!-- NotebookLM -->
                 <div class="flex flex-col items-center justify-center gap-2">
-                    <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                    <svg class="h-10 w-10 my-svg-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
                     <span class="text-xs font-medium">NotebookLM</span>
                 </div>
                 <!-- Gemini -->
                 <div class="flex flex-col items-center justify-center gap-2">
-                    <svg class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.25a.75.75 0 0 1 .75.75v3.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75zM17.25 4.5a.75.75 0 0 1 .53 1.28l-2.25 2.25a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 .53-.22zm-10.5 0a.75.75 0 0 1 .53.22l2.25 2.25a.75.75 0 0 1-1.06 1.06L6.22 5.78a.75.75 0 0 1 .53-1.28zM12 10.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM19.5 11.25a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 .75-.75zM4.5 11.25a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 .75-.75zM17.25 16.5a.75.75 0 0 1 .53.22l2.25 2.25a.75.75 0 1 1-1.06 1.06l-2.25-2.25a.75.75 0 0 1 .53-1.28zM6.75 16.5a.75.75 0 0 1 .53 1.28l-2.25 2.25a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 .53-.22zM12 17.25a.75.75 0 0 1 .75.75v3.25a.75.75 0 0 1-1.5 0V18a.75.75 0 0 1 .75-.75z"/></svg>
+                    <svg class="h-10 w-10 my-svg-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.25a.75.75 0 0 1 .75.75v3.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75zM17.25 4.5a.75.75 0 0 1 .53 1.28l-2.25 2.25a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 .53-.22zm-10.5 0a.75.75 0 0 1 .53.22l2.25 2.25a.75.75 0 0 1-1.06 1.06L6.22 5.78a.75.75 0 0 1 .53-1.28zM12 10.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM19.5 11.25a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 .75-.75zM4.5 11.25a.75.75 0 0 1 .75.75v3a.75.75 0 0 1-1.5 0v-3a.75.75 0 0 1 .75-.75zM17.25 16.5a.75.75 0 0 1 .53.22l2.25 2.25a.75.75 0 1 1-1.06 1.06l-2.25-2.25a.75.75 0 0 1 .53-1.28zM6.75 16.5a.75.75 0 0 1 .53 1.28l-2.25 2.25a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 .53-.22zM12 17.25a.75.75 0 0 1 .75.75v3.25a.75.75 0 0 1-1.5 0V18a.75.75 0 0 1 .75-.75z"/></svg>
                      <span class="text-xs font-medium">Gemini ✨</span>
                 </div>
                 <!-- GitHub -->
                 <div class="flex flex-col items-center justify-center gap-2">
-                    <svg class="h-10 w-10" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"></path></svg>
+                    <svg class="h-10 w-10 my-svg-icon" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.168 6.839 9.492.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"></path></svg>
                     <span class="text-xs font-medium">GitHub</span>
                 </div>
                 <!-- ChatGPT -->
                 <div class="flex flex-col items-center justify-center gap-2">
-                    <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.125 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" /></svg>
+                    <svg class="h-10 w-10 my-svg-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.125 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" /></svg>
                     <span class="text-xs font-medium">ChatGPT ✨</span>
                 </div>
                 <!-- Cursor -->
                 <div class="flex flex-col items-center justify-center gap-2">
-                    <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zm-7.518-.267A8.25 8.25 0 1120.25 10.5M8.288 14.212A5.25 5.25 0 1117.25 10.5" /></svg>
+                    <svg class="h-10 w-10 my-svg-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zm-7.518-.267A8.25 8.25 0 1120.25 10.5M8.288 14.212A5.25 5.25 0 1117.25 10.5" /></svg>
                     <span class="text-xs font-medium">Cursor</span>
                 </div>
             </div>
@@ -162,11 +169,22 @@
 
             <!-- Program Overview & Pricing -->
             <section id="pricing" class="bg-slate-100 dark:bg-slate-800/50 rounded-2xl p-8 md:p-12">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div>
                         <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Program Overview</h2>
                         <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">A 4-week online course designed for parent-and-child teams. With a limited class size of just 20 teams, we ensure personalized attention, collaboration, and group learning.</p>
                         <ul class="mt-6 space-y-4">
+                            <li class="flex items-start">
+                                <svg class="h-6 w-6 flex-shrink-0 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0h18M-4.5 12h22.5" /></svg>
+                                <span class="ml-3 text-slate-600 dark:text-slate-300">
+                                    Saturdays at <span id="course-time-display" class="font-semibold">10:00 AM PDT</span> starting Sep 20, 2025.
+                                    <select id="time-zone-select" class="mt-2 block w-full rounded-md border-gray-300 dark:bg-slate-700 dark:border-slate-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 text-sm"></select>
+                                </span>
+                            </li>
+                             <li class="flex items-start">
+                                <svg class="h-6 w-6 flex-shrink-0 text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962a3.75 3.75 0 015.968-3.065 3.75 3.75 0 01-5.968 3.065zm-6.25 0a3.75 3.75 0 015.968-3.065A3.75 3.75 0 013.75 12.75zm15-6.122a3.75 3.75 0 01-5.968 3.065 3.75 3.75 0 015.968-3.065z" /></svg>
+                                <span class="ml-3 text-slate-600 dark:text-slate-300">Recommended for kids aged <span class="font-semibold">9 to 14 years old</span>.</span>
+                            </li>
                             <li class="flex items-start">
                                 <svg class="h-6 w-6 flex-shrink-0 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                                 <span class="ml-3 text-slate-600 dark:text-slate-300">Hands-on activities that foster bonding, fun, and creation.</span>
@@ -252,7 +270,7 @@
             <!-- Program Outcomes (Venetian Blinds) -->
             <section id="outcomes">
                 <div class="text-center">
-                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">Powerful Program Outcomes for both  <span class="gradient-text dark:dark:gradient-text text-5xl">Parents and Kids</span></h2>
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">Powerful Program Outcomes for both <span class="gradient-text dark:dark:gradient-text text-5xl">Parents and Kids</span></h2>
                     <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">Click on any benefit to expand and learn more.</p>
                 </div>
                 <div id="venetian-blinds-container" class="mt-12 flex h-[500px] w-full cursor-pointer gap-2">
@@ -318,75 +336,130 @@
         <footer class="text-center py-12 border-t border-slate-200 dark:border-slate-800 mt-20">
             <p class="text-slate-600 dark:text-slate-400">Ready to build the future together?</p>
             <a href="#pricing" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">Register Your Team</a>
-            <p class="mt-8 text-sm text-slate-500">&copy; 2025 AI Creators Club. All rights reserved.</p>
+            <p class="mt-8 text-sm text-slate-500">&copy; 2025 I2AI. All rights reserved.</p>
         </footer>
 
     </div>
 
     <script>
-        // Theme Toggling
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        // Wait for the DOM to be fully loaded before running scripts
+        document.addEventListener('DOMContentLoaded', () => {
+            // Theme Toggling
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+            const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
-        // Check for saved theme in localStorage or use system preference
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-            themeToggleLightIcon.classList.remove('hidden');
-        } else {
-            document.documentElement.classList.remove('dark');
-            themeToggleDarkIcon.classList.remove('hidden');
-        }
-
-        themeToggleBtn.addEventListener('click', function() {
-            // toggle icons inside button
-            themeToggleDarkIcon.classList.toggle('hidden');
-            themeToggleLightIcon.classList.toggle('hidden');
-
-            // if set via local storage previously
-            if (localStorage.getItem('color-theme')) {
-                if (localStorage.getItem('color-theme') === 'light') {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
-                }
-            // if NOT set via local storage previously
+            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                themeToggleLightIcon.classList.remove('hidden');
             } else {
-                if (document.documentElement.classList.contains('dark')) {
-                    document.documentElement.classList.remove('dark');
-                    localStorage.setItem('color-theme', 'light');
+                document.documentElement.classList.remove('dark');
+                themeToggleDarkIcon.classList.remove('hidden');
+            }
+
+            themeToggleBtn.addEventListener('click', function() {
+                themeToggleDarkIcon.classList.toggle('hidden');
+                themeToggleLightIcon.classList.toggle('hidden');
+                if (localStorage.getItem('color-theme')) {
+                    if (localStorage.getItem('color-theme') === 'light') {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('color-theme', 'dark');
+                    } else {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('color-theme', 'light');
+                    }
                 } else {
-                    document.documentElement.classList.add('dark');
-                    localStorage.setItem('color-theme', 'dark');
+                    if (document.documentElement.classList.contains('dark')) {
+                        document.documentElement.classList.remove('dark');
+                        localStorage.setItem('color-theme', 'light');
+                    } else {
+                        document.documentElement.classList.add('dark');
+                        localStorage.setItem('color-theme', 'dark');
+                    }
+                }
+            });
+
+            // Venetian Blinds Logic
+            const blindsContainer = document.getElementById('venetian-blinds-container');
+            const blinds = blindsContainer.querySelectorAll('.venetian-blind');
+
+            blinds.forEach(blind => {
+                blind.addEventListener('click', () => {
+                    blinds.forEach(b => b.classList.remove('active'));
+                    blind.classList.add('active');
+                });
+            });
+
+            // Early Bird Banner Logic
+            const earlyBirdBanner = document.getElementById('early-bird-banner');
+            const earlyBirdDeadline = new Date('2025-09-01T00:00:00');
+            const now = new Date();
+
+            if (now < earlyBirdDeadline) {
+                earlyBirdBanner.classList.remove('hidden');
+            }
+
+            // Time Zone Conversion Logic
+            const timeDisplay = document.getElementById('course-time-display');
+            const timeZoneSelect = document.getElementById('time-zone-select');
+
+            // The course time is Sep 20, 2025, at 10:00 AM Pacific Daylight Time (PDT), which is UTC-7
+            const courseDate = new Date('2025-09-20T17:00:00Z');
+
+            const timeZones = [
+                'America/Los_Angeles',
+                'America/Denver',
+                'America/Chicago',
+                'America/New_York',
+                'Europe/London',
+                'Europe/Paris',
+                'Asia/Kolkata',
+                'Asia/Shanghai',
+                'Asia/Tokyo',
+                'Australia/Sydney'
+            ];
+            
+            // Function to update the displayed time based on selected time zone
+            function updateDisplayedTime(timeZone) {
+                const options = {
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    timeZoneName: 'short',
+                    timeZone: timeZone
+                };
+                try {
+                    const formattedTime = new Intl.DateTimeFormat('en-US', options).format(courseDate);
+                    timeDisplay.textContent = formattedTime;
+                } catch (error) {
+                    console.error("Could not format date for time zone:", timeZone);
+                    timeDisplay.textContent = "Invalid Time Zone";
                 }
             }
-        });
 
-        // Venetian Blinds Logic
-        const blindsContainer = document.getElementById('venetian-blinds-container');
-        const blinds = blindsContainer.querySelectorAll('.venetian-blind');
+            // Populate the dropdown
+            const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            if (!timeZones.includes(userTimeZone)) {
+                 timeZones.unshift(userTimeZone); // Add user's local time zone to the top if not present
+            }
+            
+            timeZones.forEach(tz => {
+                const option = document.createElement('option');
+                option.value = tz;
+                option.textContent = tz.replace(/_/g, ' '); // Make it more readable
+                if (tz === userTimeZone) {
+                    option.selected = true;
+                }
+                timeZoneSelect.appendChild(option);
+            });
 
-        blinds.forEach(blind => {
-            blind.addEventListener('click', () => {
-                // Remove active class from all blinds
-                blinds.forEach(b => b.classList.remove('active'));
-                // Add active class to the clicked blind
-                blind.classList.add('active');
+            // Set initial time display
+            updateDisplayedTime(userTimeZone);
+
+            // Add event listener for changes
+            timeZoneSelect.addEventListener('change', (e) => {
+                updateDisplayedTime(e.target.value);
             });
         });
-
-        // Early Bird Banner Logic
-        const earlyBirdBanner = document.getElementById('early-bird-banner');
-        // NOTE: Months are 0-indexed in JavaScript (0=Jan, 8=Sep)
-        const earlyBirdDeadline = new Date('2025-09-01T00:00:00');
-        const now = new Date();
-
-        if (now < earlyBirdDeadline) {
-            earlyBirdBanner.classList.remove('hidden');
-        }
-
     </script>
 </body>
 </html>
