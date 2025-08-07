@@ -31,62 +31,33 @@
             text-fill-color: transparent;
         }
         
-        /* Responsive Outcomes Section (Accordion on Mobile, Venetian on Desktop) */
-        .outcome-item {
+        /* Accordion Section Styling */
+        .accordion-item {
             cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
         }
-
-        /* Mobile First: Accordion behavior */
-        .outcome-item .outcome-content {
+        .accordion-content {
             max-height: 0;
             opacity: 0;
             overflow: hidden;
-            transition: all 0.5s ease-in-out;
+            transition: max-height 0.6s ease-in-out, opacity 0.4s ease-in-out, padding 0.6s ease-in-out;
+            padding-top: 0;
         }
-        .outcome-item.active .outcome-content {
-            max-height: 200px; /* Adjust as needed for content */
+        .accordion-item.active .accordion-content {
+            max-height: 500px; /* Adjust as needed for content length */
             opacity: 1;
-        }
-        .outcome-item .outcome-title-desktop {
-            display: none; /* Hide vertical title on mobile */
+            padding-top: 1rem; /* mt-4 */
         }
 
-        /* Desktop (md and up): Venetian Blind behavior */
-        @media (min-width: 768px) {
-            .outcome-item {
-                flex-grow: 1;
-                transition: flex-grow 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-            }
-            .outcome-item.active {
-                flex-grow: 10;
-            }
-            .outcome-item .outcome-title-mobile {
-                display: none; /* Hide mobile title */
-            }
-            .outcome-item .outcome-title-desktop {
-                display: block; /* Show vertical title */
-                writing-mode: vertical-rl;
-                transform: rotate(180deg);
-                transition: opacity 0.3s ease-in-out;
-            }
-            .outcome-item .outcome-content {
-                /* Reset mobile styles and center content */
-                max-height: none;
-                opacity: 0;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                height: 100%;
-                text-align: center;
-                transition: opacity 0.5s ease-in-out 0.2s;
-            }
-            .outcome-item.active .outcome-title-desktop {
-                opacity: 0;
-            }
-            .outcome-item.active .outcome-content {
-                opacity: 1;
-            }
+        /* Scroll Animation */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -117,7 +88,7 @@
         </header>
 
         <!-- AI Tools Logos -->
-        <section class="py-12">
+        <section class="py-12 fade-in-section">
             <h3 class="text-center font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider text-sm sm:text-base">
                 ✨ TOOLS YOU'LL USE
             </h3>
@@ -152,11 +123,6 @@
                     <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.125 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" /></svg>
                     <span class="text-xs font-medium">ChatGPT ✨</span>
                 </div>
-                <!-- Cursor -->
-                <div class="flex flex-col items-center justify-center gap-2">
-                    <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zm-7.518-.267A8.25 8.25 0 1120.25 10.5M8.288 14.212A5.25 5.25 0 1117.25 10.5" /></svg>
-                    <span class="text-xs font-medium">Cursor</span>
-                </div>
             </div>
         </section>
 
@@ -164,7 +130,7 @@
         <main class="mt-16 space-y-20">
 
             <!-- Program Overview & Pricing -->
-            <section id="pricing" class="bg-slate-100 dark:bg-slate-800/50 rounded-2xl p-8 md:p-12">
+            <section id="pricing" class="bg-slate-100 dark:bg-slate-800/50 rounded-2xl p-8 md:p-12 fade-in-section">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div>
                         <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white">Program Overview</h2>
@@ -212,7 +178,7 @@
             </section>
 
             <!-- Topics Section -->
-            <section id="topics">
+            <section id="topics" class="fade-in-section">
                 <div class="text-center">
                     <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">What You'll Learn</h2>
                     <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">A week-by-week journey into the world of AI and entrepreneurship.</p>
@@ -245,68 +211,46 @@
                 </div>
             </section>
             
-            <!-- Instructor Section -->
-            <section id="instructor" class="relative">
-                <div class="mx-auto max-w-4xl">
-                    <figure class="bg-slate-100 dark:bg-slate-800/50 rounded-2xl p-8 md:p-12">
-                        <blockquote class="text-xl font-medium leading-8 text-slate-800 dark:text-slate-200 md:text-2xl md:leading-9">
-                            <p>“I believe the best way to prepare our children for the future is to empower them as creators, not just consumers, of technology. With over a decade of experience in AI education, I've designed this course to be the spark that ignites a lifelong passion for innovation and problem-solving, all while strengthening family bonds.”</p>
-                        </blockquote>
-                        <figcaption class="mt-8 flex items-center gap-4">
-                            <img class="h-14 w-14 rounded-full object-cover" src="https://placehold.co/100x100/e2e8f0/475569?text=AN" alt="Arjun Nair">
-                            <div class="font-medium text-slate-900 dark:text-white">
-                                <div>Arjun Nair</div>
-                                <div class="text-sm text-slate-500 dark:text-slate-400">Co-Founder, Great Learning</div>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </div>
-            </section>
-
             <!-- Program Outcomes Section -->
-            <section id="outcomes">
+            <section id="outcomes" class="fade-in-section">
                 <div class="text-center">
                     <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">Powerful Program Outcomes for both <span class="gradient-text dark:dark:gradient-text text-5xl">Parents and Kids</span></h2>
                     <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">Click on any benefit to expand and learn more.</p>
                 </div>
-                <div id="outcomes-container" class="mt-12 flex flex-col md:flex-row md:h-[500px] w-full gap-2">
+                <div id="outcomes-container" class="mt-12 flex flex-col w-full gap-2">
                     <!-- Item 1 -->
-                    <div class="outcome-item relative rounded-2xl p-6 overflow-hidden bg-indigo-600 text-white">
-                        <h3 class="outcome-title-mobile text-xl font-bold md:hidden">Learn to Build with AI</h3>
-                        <h3 class="outcome-title-desktop absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-bold text-indigo-100">Build Real Things</h3>
-                        <div class="outcome-content">
-                            <p class="mt-4 text-indigo-200">Go beyond theory. You'll learn to use AI for building applications, games, conducting user/competitor research, vibe coding, and much more. Walk away with tangible projects and skills.</p>
+                    <div class="accordion-item rounded-2xl p-6 bg-indigo-600 text-white">
+                        <h3 class="text-xl font-bold">Learn to Build with AI</h3>
+                        <div class="accordion-content">
+                            <p class="text-indigo-200">Go beyond theory. You'll learn to use AI for building applications, games, conducting user/competitor research, vibe coding, and much more. Walk away with tangible projects and skills.</p>
                         </div>
                     </div>
                     <!-- Item 2 -->
-                    <div class="outcome-item relative rounded-2xl p-6 overflow-hidden bg-pink-500 text-white">
-                        <h3 class="outcome-title-mobile text-xl font-bold md:hidden">From Consumer to Creator</h3>
-                        <h3 class="outcome-title-desktop absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-bold text-pink-100">Shift Your Mindset</h3>
-                        <div class="outcome-content">
-                            <p class="mt-4 text-pink-200">This course is designed to fundamentally change your mindset. Become inspired by entrepreneurs and learn the Stanford Design Thinking approach to see problems as opportunities.</p>
+                    <div class="accordion-item rounded-2xl p-6 bg-pink-500 text-white">
+                        <h3 class="text-xl font-bold">From Consumer to Creator</h3>
+                        <div class="accordion-content">
+                            <p class="text-pink-200">This course is designed to fundamentally change your mindset. Become inspired by entrepreneurs and learn the Stanford Design Thinking approach to see problems as opportunities.</p>
                         </div>
                     </div>
                     <!-- Item 3 -->
-                    <div class="outcome-item relative rounded-2xl p-6 overflow-hidden bg-amber-500 text-white">
-                        <h3 class="outcome-title-mobile text-xl font-bold md:hidden">Future-Proof Your Abilities</h3>
-                        <h3 class="outcome-title-desktop absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-bold text-amber-100">Develop Critical Skills</h3>
-                        <div class="outcome-content">
-                             <p class="mt-4 text-amber-200">Develop critical problem-solving capabilities and first-principles thinking. For parents, it's about equipping your children with a competitive advantage. For kids, it's about being cool and having fun!</p>
+                    <div class="accordion-item rounded-2xl p-6 bg-amber-500 text-white">
+                        <h3 class="text-xl font-bold">Future-Proof Your Abilities</h3>
+                        <div class="accordion-content">
+                             <p class="text-amber-200">Develop critical problem-solving capabilities and first-principles thinking. For parents, it's about equipping your children with a competitive advantage. For kids, it's about being cool and having fun!</p>
                         </div>
                     </div>
                     <!-- Item 4 -->
-                    <div class="outcome-item relative rounded-2xl p-6 overflow-hidden bg-teal-500 text-white">
-                        <h3 class="outcome-title-mobile text-xl font-bold md:hidden">Quality Time, Reimagined</h3>
-                        <h3 class="outcome-title-desktop absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-lg font-bold text-teal-100">Connect as a Family</h3>
-                        <div class="outcome-content">
-                            <p class="mt-4 text-teal-200">Spend quality time together as a family, learning and creating. This is a one-of-a-kind program designed specifically for parents and children to collaborate and grow together.</p>
+                    <div class="accordion-item rounded-2xl p-6 bg-teal-500 text-white">
+                        <h3 class="text-xl font-bold">Quality Time, Reimagined</h3>
+                        <div class="accordion-content">
+                            <p class="text-teal-200">Spend quality time together as a family, learning and creating. This is a one-of-a-kind program designed specifically for parents and children to collaborate and grow together.</p>
                         </div>
                     </div>
                 </div>
             </section>
             
             <!-- What makes this different -->
-            <section class="py-16">
+            <section class="py-16 fade-in-section">
                  <div class="text-center">
                     <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">Why This Course Is Different</h2>
                 </div>
@@ -322,6 +266,165 @@
                     <div class="border border-slate-200 dark:border-slate-700 rounded-xl p-8">
                          <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Expert Instruction</h3>
                          <p class="mt-2 text-slate-600 dark:text-slate-400">Your instructor has over a decade of experience delivering AI programs to millions of learners worldwide.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Examples of Past Projects Section -->
+            <section id="past-projects" class="fade-in-section">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">Examples of Past Projects</h2>
+                    <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">See what previous cohorts have built in just four weeks.</p>
+                </div>
+                <div id="projects-container" class="mt-12 flex flex-col w-full gap-2">
+                    <!-- Project 1: Unfiltered -->
+                    <div class="accordion-item rounded-2xl p-6 bg-sky-600 text-white">
+                        <h3 class="text-xl font-bold">Unfiltered</h3>
+                        <div class="accordion-content">
+                            <div class="grid md:grid-cols-2 gap-6 items-center">
+                                <img src="https://placehold.co/600x400/0284c7/white?text=Unfiltered" alt="Unfiltered Project Placeholder" class="rounded-lg shadow-md w-full h-auto">
+                                <p class="text-sky-100">A brand to help teens navigate substance abuse.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 2: MoZailee Jewels -->
+                    <div class="accordion-item rounded-2xl p-6 bg-rose-500 text-white">
+                        <h3 class="text-xl font-bold">MoZailee Jewels</h3>
+                        <div class="accordion-content">
+                             <div class="grid md:grid-cols-2 gap-6 items-center">
+                                <img src="https://placehold.co/600x400/e11d48/white?text=MoZailee" alt="MoZailee Jewels Project Placeholder" class="rounded-lg shadow-md w-full h-auto">
+                                <p class="text-rose-100">An online store for handmade, affordable jewelry crafted by 13-year-olds in Portugal.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 3: Hydrun -->
+                    <div class="accordion-item rounded-2xl p-6 bg-lime-600 text-white">
+                        <h3 class="text-xl font-bold">Hydrun</h3>
+                        <div class="accordion-content">
+                             <div class="grid md:grid-cols-2 gap-6 items-center">
+                                <img src="https://placehold.co/600x400/65a30d/white?text=Hydrun" alt="Hydrun Project Placeholder" class="rounded-lg shadow-md w-full h-auto">
+                                <p class="text-lime-100">A web app for athletes to track hydration and optimize their running routes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Project 4: Readify -->
+                    <div class="accordion-item rounded-2xl p-6 bg-violet-600 text-white">
+                        <h3 class="text-xl font-bold">Readify</h3>
+                        <div class="accordion-content">
+                             <div class="grid md:grid-cols-2 gap-6 items-center">
+                                <img src="https://placehold.co/600x400/7c3aed/white?text=Readify" alt="Readify Project Placeholder" class="rounded-lg shadow-md w-full h-auto">
+                                <p class="text-violet-100">A platform to motivate kids to read more and exchange or sell used books.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About the Instructor Section -->
+            <section id="about-instructor" class="py-20 fade-in-section">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-center">
+                    <div class="md:col-span-1">
+                        <img src="https://placehold.co/500x500/e2e8f0/475569?text=Arjun+Nair" alt="Arjun Nair, Instructor" class="rounded-full mx-auto md:mx-0 w-48 h-48 md:w-full md:h-auto object-cover shadow-lg">
+                    </div>
+                    <div class="md:col-span-2 text-center md:text-left">
+                        <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">About the Instructor</h2>
+                        <p class="mt-2 text-xl font-semibold text-indigo-600 dark:text-indigo-400">Arjun Nair, Entrepreneurship Educator & Business Mentor</p>
+                        <div class="mt-4 space-y-4 text-slate-600 dark:text-slate-300">
+                            <p>Arjun Nair is the Co-Founder of Great Learning, a leading global edtech platform. Arjun's entrepreneurial journey is marked by resilience and innovation. After earning an MS from Duke University and an MBA from MIT Sloan—where he was awarded the prestigious Legatum Fellowship—he co-founded Great Learning, which grew into a global leader in professional education with over $100 million in revenue and was acquired by Byju's in a $600 million deal.</p>
+                            <p>Arjun's passion for education stems from personal experiences. Overcoming early academic challenges and the loss of his father at 16, he transformed adversity into a drive to get a world class education and then empower others through learning. His leadership at Great Learning has impacted over a million learners across 140+ countries, emphasizing practical skills and career readiness.</p>
+                            <p>In this summer program, Arjun brings his rich experience to inspire young minds. Participants will benefit from his insights into building impactful ventures, understanding MVPs, and navigating the entrepreneurial landscape.</p>
+                        </div>
+                        <div class="mt-8">
+                            <h3 class="text-lg font-semibold text-slate-700 dark:text-slate-200 uppercase tracking-wider">Key Highlights</h3>
+                            <ul class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-slate-600 dark:text-slate-400">
+                                <li class="flex items-center"><svg class="h-5 w-5 mr-2 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg> 0-1 Startup Founder</li>
+                                <li class="flex items-center"><svg class="h-5 w-5 mr-2 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg> 1-100 Scale-Up Experience</li>
+                                <li class="flex items-center"><svg class="h-5 w-5 mr-2 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 18a9 9 0 009-9m-9 9a9 9 0 00-9-9"/></svg> Business Across Continents</li>
+                                <li class="flex items-center"><svg class="h-5 w-5 mr-2 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Speaker at Stanford University</li>
+                                <li class="flex items-center"><svg class="h-5 w-5 mr-2 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg> BW Businessworld 40 under 40</li>
+                                <li class="flex items-center"><svg class="h-5 w-5 mr-2 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z"/><path d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20M12 14L8 12l4-2.222L16 12l-4 2z"/></svg> MIT Legatum Fellowship</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ Section -->
+            <section id="faq" class="py-20 fade-in-section">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">Frequently Asked Questions</h2>
+                    <p class="mt-4 text-lg text-slate-600 dark:text-slate-300">Have questions? We've got answers.</p>
+                </div>
+                <div id="faq-container" class="mt-12 max-w-3xl mx-auto flex flex-col w-full gap-3">
+                    <!-- FAQ Item 1 -->
+                    <div class="accordion-item rounded-xl p-6 bg-slate-100 dark:bg-slate-800/50">
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">What can I/we expect from the program?</h3>
+                        <div class="accordion-content">
+                            <p class="text-slate-600 dark:text-slate-400">Placeholder answer text. This is where the detailed response to the question will go, providing clarity and information to prospective participants.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 2 -->
+                    <div class="accordion-item rounded-xl p-6 bg-slate-100 dark:bg-slate-800/50">
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">How many hours per week is the expected time commitment?</h3>
+                        <div class="accordion-content">
+                            <p class="text-slate-600 dark:text-slate-400">Placeholder answer text. This is where the detailed response to the question will go, providing clarity and information to prospective participants.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 3 -->
+                    <div class="accordion-item rounded-xl p-6 bg-slate-100 dark:bg-slate-800/50">
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">I/we already know how to write prompts on ChatGPT. Why do this program?</h3>
+                        <div class="accordion-content">
+                            <p class="text-slate-600 dark:text-slate-400">Placeholder answer text. This is where the detailed response to the question will go, providing clarity and information to prospective participants.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 4 -->
+                    <div class="accordion-item rounded-xl p-6 bg-slate-100 dark:bg-slate-800/50">
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">What happens during the live session and what happens during the week?</h3>
+                        <div class="accordion-content">
+                            <p class="text-slate-600 dark:text-slate-400">Placeholder answer text. This is where the detailed response to the question will go, providing clarity and information to prospective participants.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 5 -->
+                    <div class="accordion-item rounded-xl p-6 bg-slate-100 dark:bg-slate-800/50">
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">What skills will participants develop?</h3>
+                        <div class="accordion-content">
+                            <p class="text-slate-600 dark:text-slate-400">Placeholder answer text. This is where the detailed response to the question will go, providing clarity and information to prospective participants.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 6 -->
+                    <div class="accordion-item rounded-xl p-6 bg-slate-100 dark:bg-slate-800/50">
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Do I need prior experience in AI or coding?</h3>
+                        <div class="accordion-content">
+                            <p class="text-slate-600 dark:text-slate-400">Placeholder answer text. This is where the detailed response to the question will go, providing clarity and information to prospective participants.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 7 -->
+                    <div class="accordion-item rounded-xl p-6 bg-slate-100 dark:bg-slate-800/50">
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">What if my child or I am outside the recommended age group?</h3>
+                        <div class="accordion-content">
+                            <p class="text-slate-600 dark:text-slate-400">Placeholder answer text. This is where the detailed response to the question will go, providing clarity and information to prospective participants.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 8 -->
+                    <div class="accordion-item rounded-xl p-6 bg-slate-100 dark:bg-slate-800/50">
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Are there opportunities to interact with other participants?</h3>
+                        <div class="accordion-content">
+                            <p class="text-slate-600 dark:text-slate-400">Placeholder answer text. This is where the detailed response to the question will go, providing clarity and information to prospective participants.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 9 -->
+                    <div class="accordion-item rounded-xl p-6 bg-slate-100 dark:bg-slate-800/50">
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">Why have you designed a program for both parents and kids at the same time? Why not two separate courses?</h3>
+                        <div class="accordion-content">
+                            <p class="text-slate-600 dark:text-slate-400">Placeholder answer text. This is where the detailed response to the question will go, providing clarity and information to prospective participants.</p>
+                        </div>
+                    </div>
+                    <!-- FAQ Item 10 -->
+                    <div class="accordion-item rounded-xl p-6 bg-slate-100 dark:bg-slate-800/50">
+                        <h3 class="text-lg font-semibold text-slate-900 dark:text-white">What if I have to miss one or more sessions?</h3>
+                        <div class="accordion-content">
+                            <p class="text-slate-600 dark:text-slate-400">Placeholder answer text. This is where the detailed response to the question will go, providing clarity and information to prospective participants.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -402,55 +505,50 @@
             updateDisplayedTime(userTimeZone);
             timeZoneSelect.addEventListener('change', (e) => updateDisplayedTime(e.target.value));
 
-            // --- Responsive Outcomes Section Logic ---
-            const outcomesContainer = document.getElementById('outcomes-container');
-            const outcomeItems = Array.from(outcomesContainer.querySelectorAll('.outcome-item'));
-            let resizeTimer;
+            // --- Accordion Logic ---
+            function setupAccordion(containerId) {
+                const container = document.getElementById(containerId);
+                if (!container) return;
+                
+                const items = Array.from(container.querySelectorAll('.accordion-item'));
 
-            function handleOutcomeClick(clickedItem) {
-                const isActive = clickedItem.classList.contains('active');
-                
-                // On mobile, clicking an active item closes it.
-                if (window.innerWidth < 768 && isActive) {
-                    clickedItem.classList.remove('active');
-                    return;
-                }
-                
-                // Deactivate all others
-                outcomeItems.forEach(item => item.classList.remove('active'));
-                
-                // Activate the clicked one (or toggle if it was already active on desktop)
-                if (!isActive) {
-                    clickedItem.classList.add('active');
-                } else if (window.innerWidth >= 768) {
-                    // On desktop, if you click the active one, it stays active
-                     clickedItem.classList.add('active');
-                }
-            }
-
-            function setDefaultActiveState() {
-                if (window.innerWidth >= 768) {
-                    // On desktop, if no item is active, make the first one active.
-                    if (!outcomeItems.some(item => item.classList.contains('active'))) {
-                        outcomeItems[0].classList.add('active');
+                function handleItemClick(clickedItem) {
+                    const isActive = clickedItem.classList.contains('active');
+                    
+                    items.forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    if (!isActive) {
+                        clickedItem.classList.add('active');
                     }
-                } else {
-                    // On mobile, ensure no items are active by default.
-                    outcomeItems.forEach(item => item.classList.remove('active'));
                 }
+
+                items.forEach(item => {
+                    item.addEventListener('click', () => handleItemClick(item));
+                });
             }
 
-            outcomeItems.forEach(item => {
-                item.addEventListener('click', () => handleOutcomeClick(item));
+            // --- Scroll Animation Logic ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            const sectionsToAnimate = document.querySelectorAll('.fade-in-section');
+            sectionsToAnimate.forEach(section => {
+                observer.observe(section);
             });
             
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(setDefaultActiveState, 100);
-            });
-
-            // Initial setup
-            setDefaultActiveState();
+            // Initialize all accordions
+            setupAccordion('outcomes-container');
+            setupAccordion('projects-container');
+            setupAccordion('faq-container');
         });
     </script>
 </body>
