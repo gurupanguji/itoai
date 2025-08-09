@@ -28,18 +28,18 @@
         }
         /* Custom gradient text */
         .gradient-text {
-            background: linear-gradient(90deg, #4f46e5, #ec4899);
+            background: linear-gradient(90deg, #fb923c, #a78bfa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-fill-color: transparent;
-            font-family: 'EB Garamond', serif;
+            //font-family: 'EB Garamond', serif;
             font-weight: 400;
-            font-style: italic;
+            //font-style: italic;
 
         }
         .dark .dark\:gradient-text {
-            background: linear-gradient(90deg, #818cf8, #f9a8d4);
+            background: linear-gradient(90deg, #a78bfa, #fb923c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -145,7 +145,7 @@
                 Go From <span class="animated-gradient-text text-7xl">Consumer to Creator</span> with AI ✨
             </h1>
             <p class="mt-6 max-w-3xl mx-auto text-lg text-slate-600 dark:text-slate-300">
-                Join our hands-on course to learn critical AI tools, build real applications, and develop an entrepreneurial mindset <span class="gradient-text dark:dark:gradient-text text-3xl">together as a family</span>.
+                Join our hands-on course to learn critical AI tools, build real applications, and develop an entrepreneurial mindset <span class="animated-gradient-text text-3xl">together as a family</span>.
             </p>
             <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
                 <a href="#pricing" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">Register Now</a>
@@ -229,14 +229,18 @@
                     </div>
                     <div class="bg-white dark:bg-slate-800 rounded-xl p-8 text-center shadow-xl border border-slate-200 dark:border-slate-700">
                         <h3 class="text-lg font-semibold text-indigo-600 dark:text-indigo-400">Per Team (2-4 Members)</h3>
-                        <p class="mt-2">
-                            <span class="text-5xl font-extrabold text-slate-900 dark:text-white">$330</span>
+                        <p class="mt-2 text-5xl font-extrabold text-slate-900 dark:text-white flex items-center justify-center gap-x-4">
+                            <span id="regular-price">$330</span>
+                            <span id="discounted-price" class="hidden">
+                                <span class="line-through text-slate-400 dark:text-slate-500 text-4xl">$330</span>
+                                <span class="gradient-text dark:dark:gradient-text">$297</span>
+                            </span>
                         </p>
                         <div id="early-bird-banner" class="hidden mt-4 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-800 dark:text-emerald-300 text-sm font-medium p-3 rounded-lg">
-                            <p><span class="font-bold">10% OFF Early Bird!</span> Register before September 1st to get the course for <span class="font-bold">$297</span>.</p>
+                            <p><span class="font-bold">10% OFF Early Bird!</span> Register before September 1st.</p>
                         </div>
                         <a href="https://book.stripe.com/bJe00k2Av0U4160d5CbEA01" class="mt-6 block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-transform transform hover:scale-105">
-                            <span class = "animated-gradient-text text-3xl">Claim Your Spot</span>
+                            <span class = "gradient-text dark:dark:gradient-text text-3xl font-extrabold">Claim Your Spot</span>
                         </a>
                         <p class="mt-3 text-xs text-slate-500">Only 20 team spots available!</p>
                     </div>
@@ -610,8 +614,17 @@
             // --- Early Bird Banner Logic ---
             const earlyBirdBanner = document.getElementById('early-bird-banner');
             const earlyBirdDeadline = new Date('2025-09-01T00:00:00');
+            const regularPriceEl = document.getElementById('regular-price');
+            const discountedPriceEl = document.getElementById('discounted-price');
+
             if (new Date() < earlyBirdDeadline) {
                 earlyBirdBanner.classList.remove('hidden');
+                regularPriceEl.classList.add('hidden');
+                discountedPriceEl.classList.remove('hidden');
+            } else {
+                earlyBirdBanner.classList.add('hidden');
+                regularPriceEl.classList.remove('hidden');
+                discountedPriceEl.classList.add('hidden');
             }
 
             // --- Time Zone Conversion Logic ---
@@ -629,8 +642,8 @@
                     parts.forEach(part => {
                         if (part.type === 'timeZoneName') {
                             timeZoneString = `<span class="font-thin">${part.value}</span>`;
-                        } else {
-                            timeString += part.value;
+                        } else if (part.type !== 'literal' || part.value.trim() !== '') {
+                           timeString += part.value;
                         }
                     });
                     timeDisplay.innerHTML = `${timeString.trim()} ${timeZoneString}`;
